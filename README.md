@@ -1,8 +1,13 @@
-# mesosphere-kubernetes-workshop
+# DC/OS Lab Workshop for M&T
 
-The Mesosphere DC/OS High Density Kubernetes Workshop
+This Mesosphere DC/OS Lab Workshop will guide you through: 
+ - High Density Multi-Kubernetes (Mesosphere Kubernetes Engine)
+ - Fast Data Services on DC/OS
+ - DC/OS Monitoring with Prometheus and Grafana
+ - Elastic CI/CD with Jenkins on DC/OS
+ 
 
-Please see the `/labs` directory for course materials and `/keys`for the keys required to access your cluster.
+Please see the [`/labs`](https://github.com/tbaums/dcos-mandt-labs/tree/master/labs) directory for course materials and [`/keys`](https://github.com/tbaums/dcos-mandt-labs/tree/master/labshttps://github.com/tbaums/dcos-mandt-labs/tree/master/keys) for the keys required to access your cluster.
 
 
 
@@ -10,7 +15,9 @@ Please see the `/labs` directory for course materials and `/keys`for the keys re
 
 ### Credits:
 
-Original Workshop Labs: Chris Gaun, Mesosphere
+Kubernetes Workshop Labs: Chris Gaun, Mesosphere
+Fast Data Labs: Mark F. Johnson, Mesosphere
+Elastic CI/CD Labs: Dan Mennell, Mesosphere
 
 Upgrading Labs to DC/OS 1.12 and Kubernetes 1.12.1: Greg Palmer, Mesosphere
 
