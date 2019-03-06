@@ -17,7 +17,7 @@ Under Kubernetes in left hand menu, choose the high availability box
 Save configuration and watch new components come online with the following command or in the GUI. Output should look like below:
 
 ```
-$ dcos kubernetes manager plan status deploy --name=kubernetes-cluster1
+$ watch dcos kubernetes manager plan status deploy --name=kubernetes-cluster1
 
 deploy (serial strategy) (COMPLETE)
 ├─ etcd (serial strategy) (COMPLETE)

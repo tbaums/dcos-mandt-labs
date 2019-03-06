@@ -133,7 +133,8 @@ cat > cluster1-options.json << EOF
   },
   "kubernetes": {
     "public_node_count": 1,
-    "private_node_count": 1
+    "private_node_count": 1,
+    "high_availability": true
   }
 }
 EOF
