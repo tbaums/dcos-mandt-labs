@@ -29,7 +29,7 @@ module "dcos" {
   dcos_variant = "ee"
   dcos_license_key_contents = "${file("license.txt")}"
 
-  tags = {workshop = "M&T"} 
+  tags = {workshop = "MTBank"} 
 
   public_agents_additional_ports = ["6443", "7443", "3000", "9090", "9093", "9091", "30443"]
 }
