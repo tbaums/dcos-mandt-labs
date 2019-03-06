@@ -1,4 +1,4 @@
-## Lab 7 - Scaling to More Nodes
+## Lab 3 - Scaling to More Nodes
 
 Sometimes you need more Kubernetes infrastructure to run more applications. DC/OS can easily scale the cluster. 
 
