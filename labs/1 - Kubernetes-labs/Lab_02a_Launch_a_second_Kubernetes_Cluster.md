@@ -1,4 +1,4 @@
-# Launch a second Kubernetes cluster
+## Lab 2a - Launch a second Kubernetes cluster
 
 In this lab, you will launch a second Kubernetes cluster on the same DC/OS cluster, demonstrating Mesosphere Kubernetes Engine's ability to run high-density, multi-kubernetes environments.
 

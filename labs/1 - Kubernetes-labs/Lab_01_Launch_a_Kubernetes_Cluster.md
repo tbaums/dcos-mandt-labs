@@ -282,5 +282,5 @@ dcos security org users grant kubernetes-cluster dcos:mesos:master:volume:role:s
 dcos security org users grant kubernetes-cluster dcos:mesos:master:framework:role:slave_public read
 dcos security org users grant kubernetes-cluster dcos:mesos:agent:framework:role:slave_public read
 ```
-["Next Lab >>"](https://github.com/tbaums/dcos-mandt-labs/blob/master/labs/1%20-%20Kubernetes-labs/Lab_02_Connecting_kubectl_to_K8s.md)
+[Next Lab >>](https://github.com/tbaums/dcos-mandt-labs/blob/master/labs/1%20-%20Kubernetes-labs/Lab_02_Connecting_kubectl_to_K8s.md)
 
