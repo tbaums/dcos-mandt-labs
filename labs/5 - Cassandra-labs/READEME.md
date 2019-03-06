@@ -76,7 +76,14 @@ Verify that the record exists.
 SELECT * FROM students;
 ```
 
+You should see the result below.
+```
+ student_id | student_name
+------------+--------------
+          1 |     John Doe
 
+(1 rows)
+```
 
 
 
