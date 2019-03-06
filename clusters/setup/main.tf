@@ -31,7 +31,11 @@ module "dcos" {
 
   tags = {workshop = "MTBank"} 
 
-  public_agents_additional_ports = ["6443", "7443", "3000", "9090", "9093", "9091", "30443"]
+  public_agents_additional_ports = ["6090", "6443", "7443", "3000", "9090", "9093", "9091", "30443"]
+
+  dcos_superuser_username = "admin"
+
+  dcos_superuser_password_hash = "$6$rounds=656000$3/4kWPCJ3Cdk.Xas$5XANsC7vyLdGnPDe7euYJUhowoHDWA/0182ttTt8Lw3pZd4DzZgAz3R6v/.5oe9IJvOLl2bGFeM/g74qc9Vmz."
 }
 
 output "masters-ips" {

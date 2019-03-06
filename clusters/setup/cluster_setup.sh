@@ -4,7 +4,7 @@ export LANG=en_US.utf-8
 export LANGUAGE=en_US.utf-8 LC_ALL=en_US.utf-8
 
 dcos cluster remove --all
-dcos cluster setup https://$(echo $1 | sed -r "s|https?://||") --username=bootstrapuser --password=deleteme --no-check --insecure
+dcos cluster setup https://$(echo $1 | sed -r "s|https?://||") --username=admin --password=$2 --no-check --insecure
 dcos config set core.ssl_verify false
 dcos package install dcos-enterprise-cli --yes
 
@@ -30,9 +30,3 @@ dcos package install --options=edgelb.options.json edgelb --yes
 until dcos edgelb ping; do sleep 1; done
 
 dcos edgelb create edgelb.cfg.json
-
-
-public_ip=$(./find_DCOS_public_ip.sh)
-public_ip=${public_ip%$'\r'}
-
-echo -e "\n----------------\n$public_ip  public.dcos\n"
