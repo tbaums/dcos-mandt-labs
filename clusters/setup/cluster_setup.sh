@@ -30,9 +30,3 @@ dcos package install --options=edgelb.options.json edgelb --yes
 until dcos edgelb ping; do sleep 1; done
 
 dcos edgelb create edgelb.cfg.json
-
-
-public_ip=$(./find_DCOS_public_ip.sh)
-public_ip=${public_ip%$'\r'}
-
-echo -e "\n----------------\n$public_ip  public.dcos\n"
