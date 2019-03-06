@@ -1,4 +1,9 @@
 # Used to determine your public IP for forwarding rules
+variable "cluster_name" {
+  type = "string"
+  default = "af-cluster"
+}
+
 data "http" "whatismyip" {
   url = "http://whatismyip.akamai.com/"
 }
@@ -10,18 +15,22 @@ provider "aws" {
 module "dcos" {
   source = "dcos-terraform/dcos/aws"
 
+  subnet_range = "172.16.0.0/16"
+
   dcos_instance_os    = "centos_7.5"
-  cluster_name        = "ws-cluster" 
+  cluster_name        = "mtb-workshop"
   ssh_public_key_file = "workshop.id_rsa.pub"
   admin_ips           = ["0.0.0.0/0"]
 
   num_masters        = "1"
-  num_private_agents = "4"
+  # num_private_agents = "4"
+  num_private_agents = "1"
   num_public_agents  = "1"
 
   bootstrap_instance_type = "t2.medium"
   public_agents_instance_type = "m5.xlarge"
-  private_agents_instance_type = "c5.4xlarge"
+  # private_agents_instance_type = "c5.4xlarge"
+  private_agents_instance_type = "m5.xlarge"
   masters_instance_type = "m5.xlarge"
   dcos_version = "1.12.1"
 
