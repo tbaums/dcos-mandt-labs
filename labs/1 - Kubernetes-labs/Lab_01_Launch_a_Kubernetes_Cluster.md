@@ -55,7 +55,7 @@ sudo mv dcos /opt/bin
 dcos cluster remove --all
 ```
 ```
-dcos cluster setup https://<master node IP address>
+dcos cluster setup https://<master node IP address> --insecure
 ```
 
 Once the CLI is installed, confirm that it is installed correctly and connected to your cluster by running following command
@@ -101,7 +101,7 @@ The Mesosphere Kubernetes Engine service is being installed.
 You can check to see if the control manager is installed completely by running the following command:
 
 ```
-dcos kubernetes manager plan status deploy
+watch dcos kubernetes manager plan status deploy
 ```
 
 ```
