@@ -1,50 +1,24 @@
-## Lab 3 - Scaling to More Nodes
+## Lab 3 - Scaling Your Kuberenetes Cluster (adding more Kubelets)
 
 Sometimes you need more Kubernetes infrastructure to run more applications. DC/OS can easily scale the cluster. 
 
-There are several ways to scale Kubernetes in DC/OS. 
+There are several ways to scale Kubernetes in DC/OS, including via the CLI, HTTP API, or GUI. In this exercise, we will use the DC/OS GUI to scale our Kubernetes cluster.
 
-## From the UI
 
-From the UI, go to Services > Kubernetes and choose "Edit" in top right. 
-
-![](https://github.com/tbaums/dcos-mandt-labs/blob/master/screenshots/select-k8s-1.png)
-
-Under "kubernetes" in left hand menu, change the number of "node count" to 2 and the "public node count" to 1
-
+From the UI, go to Services > Kubernetes.
 
 ![](https://github.com/tbaums/dcos-mandt-labs/blob/master/screenshots/select-k8s-edit.png)
 
-## From the CLI
+Next, choose "Edit" in top right. 
 
-Export the current package configuration into a JSON file called config.json
+![](https://github.com/tbaums/dcos-mandt-labs/blob/master/screenshots/select-k8s-1.png)
 
-```
-$ dcos kubernetes cluster  describe --cluster-name=kubernetes-cluster1 | grep -v '^Using' > config.json
+Under "kubernetes" in left hand menu, change the number of "node count" to 2.
 
-```
+![](https://github.com/tbaums/dcos-mandt-labs/blob/master/screenshots/increase-kubelet-count.png)
 
-Use an editor such as vi to change the config file and update "node_count" and "public node count"
-to the new number of nodes
+You will observe that the scheduler task updates, followed by `etcd`. Lastly, the new Kubelet will start up and join the Kubernetes cluster.
 
-```
-"kubernetes": {
-    "cloud_provider": "(none)",
-    "high_availability": true,
-    "network_provider": "dcos",
-    "node_count": 2,
-    "public_node_count": 1,
-    "reserved_resources": {
-      "kube_cpus": 2,
-      "kube_disk": 10240,
-      "kube_mem": 2048,
-      "system_cpus": 1,
-      "system_mem": 1024
-    }
-```
+![](https://github.com/tbaums/dcos-mandt-labs/blob/master/screenshots/kubelet-starting.png)
 
-Scale the cluster 
 
-```
-dcos kubernetes update --options=config.json
-```
