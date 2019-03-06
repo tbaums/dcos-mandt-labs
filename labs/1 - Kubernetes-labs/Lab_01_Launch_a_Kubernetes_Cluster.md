@@ -10,7 +10,7 @@ If you have a Macbook or Linux laptop and you don't have any restrictions on acc
 
 Download the id_rsa key from the workshop cluster Github location at:
 
-https://github.com/tbaums/dcos-k8s-days-labs/tree/master/keys
+https://github.com/tbaums/dcos-mandt-labs/tree/master/keys
 
 If using Windows and Putty Telnet, you will need to download the key above and convert it to a `.ppk` file. Please see the instructor with questions.  
 
@@ -79,46 +79,20 @@ Your instructor will give you a tour of DC/OS UI and catalog.
 
 ### Step 3. Launch a Kubernetes Cluster 
 
-To launch a Kubernetes cluster, you must first deploy the Mesosphere Kubernetes Control Plane Manager. 
+To launch a Kubernetes cluster, you must first deploy the Mesosphere Kubernetes Engine (Control Plane Manager). Your instructors have pre-installed Mesosphere Kubernetes Engine on your behalf, however you still need the DC/OS Kubernetes CLI package.
 
-### Step 3.a 
-
-Install the Kubernetes Control Plane Manager with the following command:
+Install the DC/OS Kubernetes CLI package with the following command:
 
 ```
-dcos package install kubernetes --yes
+dcos package install kubernetes --yes --cli
 ```
 
-```
-By Deploying, you agree to the Terms and Conditions https://mesosphere.com/catalog-terms-conditions/#certified-services
-Mesosphere Kubernetes Engine
-Installing Marathon app for package [kubernetes] version [2.0.0-1.12.1]
-Installing CLI subcommand for package [kubernetes] version [2.0.0-1.12.1]
-New command available: dcos kubernetes
-The Mesosphere Kubernetes Engine service is being installed.
-```
+You're now ready to launch your first Kubernetes cluster!
 
-You can check to see if the control manager is installed completely by running the following command:
 
-```
-watch dcos kubernetes manager plan status deploy
-```
+### Step 3.a
 
-```
-deploy (serial strategy) (COMPLETE)
-└─ mesosphere-kubernetes-engine (serial strategy) (COMPLETE)
-   └─ mesosphere-kubernetes-engine-0:[cosmos-adapter] (COMPLETE)
-```
-
-When all steps are "COMPLETE", confirm that the "dcos kubernetes" CLI was installed.
-
-```
-dcos kubernetes --help
-```
-
-### Step 3.b 
-
-Once the Kubernetes control plan manager is running, you can use it to launch a Kubernetes cluster.  Since you are using the Enterprise version of DC/OS, you can use the DC/OS certificate authoritity to create an SSL key to be used with a DC/OS service account user.
+Now that the Kubernetes control plan manager is running, you can use it to launch a Kubernetes cluster.  Since you are using the Enterprise version of DC/OS, you can use the DC/OS certificate authoritity to create an SSL key to be used with a DC/OS service account user.
 
 First, you must install the DC/OS Enterprise CLI, which gives you access to DC/OS Enterprise security features, among other useful tools.
 
@@ -156,6 +130,10 @@ cat > cluster1-options.json << EOF
     "name": "kubernetes-cluster1",
     "service_account": "kubernetes-cluster1",
     "service_account_secret": "kubernetes-cluster1/sa"
+  },
+  "kubernetes": {
+    "public_node_count": 1,
+    "private_node_count": 1
   }
 }
 EOF
@@ -182,12 +160,12 @@ Kubernetes cluster '[kubernetes-cluster1]' is being created
 Your new Kubernetes cluster will take a few minutes to spin up. You can see the installation runbook automation and monitor the status of installation of each component with the command below:
 
 ```
-dcos kubernetes manager plan status deploy --name=kubernetes-cluster1
+watch dcos kubernetes manager plan status deploy --name=kubernetes-cluster1
 ```
 First, it will show some Kubernetes components completed, and some started or pending like this:
 
 ```
-$ dcos kubernetes manager plan status deploy --name=kubernetes-cluster1
+$ watch dcos kubernetes manager plan status deploy --name=kubernetes-cluster1
 
 deploy (serial strategy) (IN_PROGRESS)
 ├─ etcd (serial strategy) (COMPLETE)
@@ -204,7 +182,7 @@ deploy (serial strategy) (IN_PROGRESS)
 When it is completely installed, the plan status should look like this:
 
 ```
-$ dcos kubernetes manager plan status deploy --name=kubernetes-cluster1
+$ watch dcos kubernetes manager plan status deploy --name=kubernetes-cluster1
 
 deploy (serial strategy) (COMPLETE)
 ├─ etcd (serial strategy) (COMPLETE)
@@ -219,7 +197,7 @@ deploy (serial strategy) (COMPLETE)
 
 ```
 
-### Step 4. Install Kubernetes kubectl Command Line
+### Step 4. Install Kubernetes `kubectl` Command Line
 
 **For Windows** with `curl` installed the commands are:
 
