@@ -16,7 +16,7 @@ Please see the [`/labs`](https://github.com/tbaums/dcos-mandt-labs/tree/master/l
 ### Credits:
 
 - Kubernetes Workshop Labs: Chris Gaun, Mesosphere
-- Fast Data Labs: Mark F. Johnson, Mesosphere
+- Fast Data Labs: Mark F. Johnson and Joerg Schad, Mesosphere
 - Elastic CI/CD Labs: Dan Mennell, Mesosphere
 - Upgrading Labs to DC/OS 1.12 and Kubernetes 1.12.1: Greg Palmer, Mesosphere
 
