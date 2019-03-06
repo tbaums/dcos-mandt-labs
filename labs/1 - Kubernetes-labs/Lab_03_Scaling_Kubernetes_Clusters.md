@@ -8,10 +8,12 @@ There are several ways to scale Kubernetes in DC/OS.
 
 From the UI, go to Services > Kubernetes and choose "Edit" in top right. 
 
+![](https://github.com/tbaums/dcos-mandt-labs/blob/master/screenshots/select-k8s-1.png)
+
 Under "kubernetes" in left hand menu, change the number of "node count" to 2 and the "public node count" to 1
 
 
-![](https://i.imgur.com/0YJxn1r.png)
+![](https://github.com/tbaums/dcos-mandt-labs/blob/master/screenshots/select-k8s-edit.png)
 
 ## From the CLI
 
