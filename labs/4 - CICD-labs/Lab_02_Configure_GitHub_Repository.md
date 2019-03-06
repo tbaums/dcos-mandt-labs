@@ -20,7 +20,7 @@ Next, select the pencil icon to make changes to the `cd-demo-app.json` file dire
 
 You need to adjust one value in this JSON specification. 
 
-Modify the Docker image to `<your Docker hub username>/cd-demo-app:latest`. This is where Marathon will look to pull the app's container image after Jenkins has pushed it to Dockerhub. Please note that while DockerHub allows you to log in with your email address, *you must use your DockerHub **username** here*.
+Modify the Docker image to `<your Docker hub username>/cicd-demo:latest`. This is where Marathon will look to pull the app's container image after Jenkins has pushed it to Dockerhub. Please note that while DockerHub allows you to log in with your email address, *you must use your DockerHub **username** here*.
 
 ![github-edit2](https://github.com/tbaums/dcos-k8s-days-labs/blob/master/labs/CICD-labs/screenshots/jenkins-app.png)
 
