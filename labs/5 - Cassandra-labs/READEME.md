@@ -1,0 +1,90 @@
+
+
+# Deploing Cassandra on DC/OS
+
+In this exercise we will spin up multiple services that work together to provide a web application called Tweeter. Tweeter, as you guessed from its name, is an application similar to Twitter that allows users to post 140 character messages to other members of the Tweeter community. Tweeter stores tweets in the DC/OS Cassandra service and streams tweets to the Kafka message service.
+
+## Deploy CASSANDRA Service from CLI
+
+From your DC/OS CLI, install the DC/OS Cassandra package from the Catalog.
+
+```
+dcos package install --yes cassandra
+```
+
+Monitor the deployment of Cassandra.
+
+```
+watch dcos cassandra plan show deploy
+```
+
+You should see something that looks like the following:
+
+```
+deploy (serial strategy) (IN_PROGRESS)
+└─ node-deploy (serial strategy) (IN_PROGRESS)
+   ├─ node-0:[server] (COMPLETE)
+   ├─ node-0:[init_system_keyspaces] (COMPLETE)
+   ├─ node-1:[server] (COMPLETE)
+   └─ node-2:[server] (PREPARED)
+```        
+
+Hit `<Ctrl-C>` to exit the watch command and return back to your prompt.
+
+## Cassandra CQL command line
+
+Deploy a container where we will run `cqlsh`.  First download [cqlsh.json](cqlsh.json)
+
+```
+dcos marathon app add cqlsh.json
+```
+
+Run cqlsh.
+
+```
+dcos task exec -ti cqlsh cqlsh node-0-server.cassandra.autoip.dcos.thisdcos.directory 9042
+```
+
+You should see something that looks like the following
+
+```
+Connected to cassandra at node-0-server.cassandra.autoip.dcos.thisdcos.directory:9042.
+[cqlsh 5.0.1 | Cassandra 3.11.3 | CQL spec 3.4.4 | Native protocol v4]
+Use HELP for help.
+cqlsh>
+```        
+
+Create a keyspace in Cassandra.
+
+```
+CREATE KEYSPACE workshop WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
+USE workshop;
+```
+
+Create table.
+```
+CREATE TABLE students (student_id int PRIMARY KEY, student_name text);
+```
+
+Insert record into table.
+```
+INSERT INTO students (student_id, student_name) VALUES (1, 'John Doe');
+```
+
+Verify that the record exists.
+```
+SELECT * FROM students;
+```
+
+
+
+That’s it for deploying a modern application on DC/OS.  If you have extra time, try scaling the number of nodes for the services you have deployed.
+
+
+
+
+
+
+
+
+
