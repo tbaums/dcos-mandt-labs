@@ -13,7 +13,7 @@ Next, choose "Edit" in top right.
 
 ![](https://github.com/tbaums/dcos-mandt-labs/blob/master/screenshots/select-k8s-edit.png)
 
-Under "kubernetes" in left hand menu, change the number of "node count" to 2.
+Under "kubernetes" in left hand menu, change the number of "node count" to 2. Then select "Review and Run".
 
 ![](https://github.com/tbaums/dcos-mandt-labs/blob/master/screenshots/increase-kubelet-count.png)
 
@@ -21,4 +21,18 @@ You will observe that the scheduler task updates, followed by `etcd`. Lastly, th
 
 ![](https://github.com/tbaums/dcos-mandt-labs/blob/master/screenshots/kubelet-starting.png)
 
+You can confirm the additional Kubelet was added sucessfully by running:
 
+```
+kubectl get nodes
+
+NAME                                                      STATUS    ROLES     AGE       VERSION
+kube-control-plane-0-instance.kubernetes-cluster1.mesos   Ready     master    110m      v1.13.3
+kube-control-plane-1-instance.kubernetes-cluster1.mesos   Ready     master    32m       v1.13.3
+kube-control-plane-2-instance.kubernetes-cluster1.mesos   Ready     master    32m       v1.13.3
+kube-node-0-kubelet.kubernetes-cluster1.mesos             Ready     <none>    108m      v1.13.3
+kube-node-1-kubelet.kubernetes-cluster1.mesos             Ready     <none>    7m48s     v1.13.3
+kube-node-public-0-kubelet.kubernetes-cluster1.mesos      Ready     <none>    107m      v1.13.3
+```
+
+["Next Lab >>"](https://github.com/tbaums/dcos-mandt-labs/blob/master/labs/)
