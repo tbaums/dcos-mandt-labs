@@ -16,10 +16,6 @@ You can also observe DC/OS spinning up a new Jenkins executor to execute the pul
 
 ![jenkins-observe-progress](https://github.com/tbaums/dcos-k8s-days-labs/blob/master/labs/CICD-labs/screenshots/jenkins-observe-progress.png)
 
- ## Step 3 - Visit your new Jekyll site!
+ ## Step 3 - Observe application deployed to DC/OS!
 
- Point your browser to your DC/OS public node running Marathon-LB (public IP, no port needed).
-
- You should see your Jekyll site as below!
-
- ![jenkins-jekyll-site](https://github.com/tbaums/dcos-k8s-days-labs/blob/master/labs/CICD-labs/screenshots/jenkins-jekyll-site.png)
+ Visit the services tab in your DC/OS UI and note the launched containerized application!
