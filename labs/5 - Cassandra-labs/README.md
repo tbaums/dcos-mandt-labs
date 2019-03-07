@@ -33,7 +33,7 @@ Hit `<Ctrl-C>` to exit the watch command and return back to your prompt.
 
 ## Cassandra CQL command line
 
-Deploy a container where we will run `cqlsh`.  First download [cqlsh.json](cqlsh.json)
+Deploy a container where we will run `cqlsh`.  First download [cqlsh.json](https://raw.githubusercontent.com/tbaums/dcos-mandt-labs/master/labs/5%20-%20Cassandra-labs/cqlsh.json)
 
 ```
 dcos marathon app add cqlsh.json
