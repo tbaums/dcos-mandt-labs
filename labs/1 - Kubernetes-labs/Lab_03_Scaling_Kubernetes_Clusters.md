@@ -21,7 +21,7 @@ You will observe that the scheduler task updates, followed by `etcd`. Lastly, th
 
 ![](https://github.com/tbaums/dcos-mandt-labs/blob/master/screenshots/kubelet-starting.png)
 
-You can confirm the additional Kubelet was added sucessfully by running:
+Wait for the new node change to `Running` state then you can confirm the additional Kubelet was added sucessfully by running:
 
 ```
 kubectl get nodes

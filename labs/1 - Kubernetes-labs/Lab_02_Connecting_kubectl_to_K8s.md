@@ -54,8 +54,6 @@ This is the content of the file:
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kubernetes.dcos.io/edgelb-pool-name: "edgelb-proxy"
   name: kubernetes-dashboard-ext
   namespace: kube-system
 spec:

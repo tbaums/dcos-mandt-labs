@@ -28,6 +28,12 @@ ssh -i ./id_rsa centos@<your bootstrap server ip address>
 
 **All students continue here:**
 
+Your instructor will give you:
+- Master IP address
+- Public IP address
+- DC/OS user and password
+
+Access your DC/OS Dashboard using the URL `https://<MASTER IP>/`.  Make sure you use *HTTPS*.
 
 Set up the DC/OS command line by clicking on the top left and choosing "Install CLI"
 
@@ -46,10 +52,9 @@ sudo mkdir -p /opt/bin &&
 curl https://downloads.dcos.io/binaries/cli/linux/x86-64/dcos-1.12/dcos -o dcos && 
 chmod +x dcos &&
 sudo mv dcos /opt/bin
-
+dcos cluster setup https://34.201.164.41
+dcos
 ```
-
-**Note: DC/OS CLI instructions default to `http`. For the purposes of these lab exercises, however, we must set up and attach to our DC/OS clusters using `https`. After installing the CLI, please follow the steps below to detach and reattach to your cluster using `https`:**
 
 ```
 dcos cluster remove --all
