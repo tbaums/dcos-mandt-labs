@@ -1,80 +1,74 @@
-# Lab 1 - Install Marathon-LB, Prometheus, and Grafana
+# Lab 1 - Deploy DC/OS Monitoring Service
 
 Note: These lab exercises assume you have a working DC/OS cluster and have successfully attached the DC/OS CLI to that cluster. 
 
-
-## Step 1 - Install Marathon-LB 
-
-_If you are undertaking these lab exercises as part of a broader DC/OS days workshop, you may already have Marathon-LB installed on a public node in your cluster. If you already have Marathon-LB installed, please skip this step._
-
-Marathon-LB is an easy-to-use, HAProxy-based load balancer most commonly used to expose services running on DC/OS to the public Internet.
-
-To install Marathon-LB on DC/OS, first navigate to the *Catalog* tab in your DC/OS UI.
-
-![catalog-tab](https://github.com/tbaums/dcos-days-prometheus-grafana-labs/blob/master/screenshots/catalog-tab.png)
+* DCOS-Monitoring is a monitoring package that includes preconfigured deployments of Prometheus and Grafanna along with some default Grafana dashboards.  DCOS-Monitoring will be deployed from the web GUI.  
 
 
-In the search box, search for `marathon-lb` and select *marathon-lb*.
+* Kafka is a popular open source messaging service.  Kafka will be deployed via the command line.
 
-![marathon-search](https://github.com/tbaums/dcos-days-prometheus-grafana-labs/blob/master/screenshots/marathon-search.png)
+Have Fun!
 
-Next, click *Review & Run* to open the configuration settings for your new Marathon-LB instance.
+#Deploy a DC/OS Framework Service From the GUI
+In this section we are going to deploy the DC-OS monitoring service via the DC/OS web GUI.  DCOS-Monitoring is a great example of the community giving back.  It deploys Grafanna and Prometheus preconfigured to work together.  It also auto imports a selection of dashboards that to visualize the health of the DC/OS Cluster and Services running on DC/OS.
 
-![marathon-review-and-run](https://github.com/tbaums/dcos-days-prometheus-grafana-labs/blob/master/screenshots/marathon-review-and-run.png)
+1.  Navigate to the dashboard of the DC/OS GUI within a supported browser:
 
-Without making any changes to the configuration, click *Review and Run* again.
+http://<Cluster-Master-IP-Address-or-Load-Balancer-Name>
 
-![marathon-review-and-run-2](https://github.com/tbaums/dcos-days-prometheus-grafana-labs/blob/master/screenshots/marathon-review-and-run-2.png)
+<DASHBOARD>
 
-As a last step, click *Run Service*.
+2. With the window large enough to expose the tree view on the left side of the screen, click "Catalog".
 
-![marathon-run-service](https://github.com/tbaums/dcos-days-prometheus-grafana-labs/blob/master/screenshots/marathon-run-service.png)
+<CLICK-CATALOG>
 
-In the *Services* tab of the DC/OS GUI, you should now see Marathon-LB starting up.
+You will be presented with a catalog of frameworks that can easily be deployed to DC/OS
 
-![marathon-booting-up](https://github.com/tbaums/dcos-days-prometheus-grafana-labs/blob/master/screenshots/marathon-booting-up.png)
+<CATALOG>
 
+Feel free to scroll through the screen to see all the different services that are avialable to deploy from the catalog.  Scroll to the top of the page and type "mon" into the "Search Box".  This will filter the visible Frameworks accordingly.  
 
-## Step 2 - Install Prometheus
+3.  Find "beta-dcos-monitoring" and click it.
 
-As in Step 1, navigate to the *Catalog* tab in the DC/OS UI.
+<MONITORING>
 
-In the search box, search for `prometheus` and click the package.
+You will be presented with the initial configuration screen for the "beta-dcos-monitoring" Service.  Here you can select the version of the service you would like to deploy.  
 
-![prometheus-search](https://github.com/tbaums/dcos-days-prometheus-grafana-labs/blob/master/screenshots/prometheus-search.png)
+4. From the pull-down menu, select v0.4.3-beta
 
-Next, click *Review and Run*.
+<VERSION>
 
-![prometheus-review-and-run](https://github.com/tbaums/dcos-days-prometheus-grafana-labs/blob/master/screenshots/prometheus-review-and-run.png)
+5. Click "Review and Run" This will expose the "Edit Configuration" screen.
 
-Without changing the configuration, click *Review and Run*.
+<EDIT-CONFIG>
 
-![prometheus-review-and-run-2](https://github.com/tbaums/dcos-days-prometheus-grafana-labs/blob/master/screenshots/prometheus-review-and-run-2.png)
+By clicking the links on the left, you expose advanced configuration and resource allocation options for the different monitoring components: Prometheus, Grafanna, and Alert Manager.  For this exercise we are going to use the default entries.  Click the "JSON editer" slider to see how the JSON entries map to the entries in the gui.
 
-To begin the installation, click *Run Service*.
+6.  Click "Review and Run"
 
-![prometheus-run-service](https://github.com/tbaums/dcos-days-prometheus-grafana-labs/blob/master/screenshots/prometheus-run-service.png)
+<FINAL>
 
-In the *Services* tab of the DC/OS GUI, you should now see Prometheus starting up.
+Here you can give your configuration one final review before deploying the service.  You can also click "Download Config" to download a copy of the JSON for manual modification, or inclusion in as CI/CD Pipeline.
 
-## Step 3 - Install Grafana
+7. Click "Run Service"
 
-As in steps 1 and 2, navigate to the *Catalog* tab in the DC/OS UI.
+If everything needed to deploy the service is there, you are presented with the "Success" call-out box.
 
-In the search box, search for `grafana` and click the package.
+<SUCCESS>
 
-![grafana-search](https://github.com/tbaums/dcos-days-prometheus-grafana-labs/blob/master/screenshots/grafana-search.png)
+8. Click "Open Service"
 
-Next, click *Review and Run*.
+This will begin the deployment of the dcos-monitoring service and take you to the service detail screen.  From here you can watch the progress of the dcos-monitoring service.
 
-![grafana-review-and-run](https://github.com/tbaums/dcos-days-prometheus-grafana-labs/blob/master/screenshots/grafana-review-and-run.png)
+<SERVICE>
 
-Without changing the configuration, click *Review and Run*.
+The first "Task" to be deployed is the scheduler.  The scheduler is responsible for the lifecycle of the service: deploys tasks, restarts failed tasks, and scales the tasks as desired.
 
-![grafana-review-and-run-2](https://github.com/tbaums/dcos-days-prometheus-grafana-labs/blob/master/screenshots/grafana-review-and-run-2.png)
+Once the board is green, we can assume that the service is fully deployed as all tasks are passing health checks.  In some cases, the service may take a few additional moments for the service to complete its start
 
-To begin the installation, click *Run Service*.
+<COMPLETE>
 
-![grafana-run-service](https://github.com/tbaums/dcos-days-prometheus-grafana-labs/blob/master/screenshots/grafana-run-service.png)
+As the DC/OS Monitoring service takes advantage of the DC/OS Admin Router, we can go directly to the respective dashboards for Prometheus and Grafana by accessing the below URL's.
 
-In the *Services* tab of the DC/OS GUI, you should now see Grafana starting up.
+https://<CLUSTER_URL>/service/dcos-monitoring/grafana/
+https://<CLUSTER_URL>/service/dcos-monitoring/prometheus
