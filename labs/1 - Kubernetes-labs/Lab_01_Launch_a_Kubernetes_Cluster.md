@@ -56,13 +56,6 @@ dcos cluster setup https://34.201.164.41
 dcos
 ```
 
-```
-dcos cluster remove --all
-```
-```
-dcos cluster setup https://<master node IP address> --insecure
-```
-
 Once the CLI is installed, confirm that it is installed correctly and connected to your cluster by running following command
 
 ```
