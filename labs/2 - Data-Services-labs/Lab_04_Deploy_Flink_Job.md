@@ -6,7 +6,7 @@
 
 The core piece of this lab exercise is the [FinancialTransactionJob](https://github.com/dcos/demos/tree/master/flink/1.11/flink-job/src/main/java/io/dcos) which we will submit to Flink.
 
-First, we need to upload the [jar file](https://downloads.mesosphere.com/dcos-demo/flink/flink-job-1.0.jar) into Flink. Please note that the jar file is too large to be included in this GitHub repo, but can be downloaded [here](https://downloads.mesosphere.com/dcos-demo/flink/flink-job-1.0.jar).
+First, we need to upload the jar file into Flink. Please note that the jar file is too large to be included in this GitHub repo, but can be downloaded [here](https://downloads.mesosphere.com/dcos-demo/flink/flink-job-1.0.jar).
 
 
 ### Step 2 - Upload and submit FinancialTransactionJob to Flink
@@ -21,22 +21,23 @@ Once we hit Submit, we should see the job begin to run in the Flink web UI.
 
 Now that we have the Flink job is running, we only need a way to visualize the results. 
 
-We do that with another [simple GoLang app](https://github.com/dcos/demos/blob/master/flink/1.11/actor/actor_viewer.go) and again we will deploy this microservice using kubernetes using the [flink-demo-actor.yaml deployment definition](https://github.com/dcos/demos/blob/master/flink-k8s/1.11/actor/flink-demo-actor.yaml):
+We do that with another [simple GoLang app](https://github.com/dcos/demos/blob/master/flink/1.11/actor/actor_viewer.go) and again we will deploy this microservice using kubernetes using the [flink-demo-actor.yaml](https://github.com/dcos/demos/blob/master/flink-k8s/1.11/actor/flink-demo-actor.yaml) deployment definition:
 
 ```bash
-$ kubectl apply -f https://raw.githubusercontent.com/dcos/demos/master/flink-k8s/1.11/actor/flink-demo-actor.yaml
+kubectl apply -f https://raw.githubusercontent.com/dcos/demos/master/flink-k8s/1.11/actor/flink-demo-actor.yaml
 ```
 We can check the status of the deployment:
 
 ```bash
-$ kubectl get deployments
-$ kubectl get pods
+kubectl get deployments
+kubectl get pods
 ```
 
 We can also view the log output to make we are detecting fraud as expected (you will need to use the actual pod id from the previous command):
 
 ```bash
-$ kubectl logs flink-demo-actor--655890656-8d1ls
+kubectl logs flink-demo-actor--655890656-8d1ls
+
 Detected Fraud:   TransactionAggregate {startTimestamp=0, endTimestamp=1520473325000, totalAmount=23597:
 Transaction{timestamp=1520473023000, origin=3, target='7', amount=5857}
 Transaction{timestamp=1520473099000, origin=3, target='7', amount=7062}
@@ -61,5 +62,3 @@ Transaction{timestamp=1520473050000, origin=2, target='3', amount=924}
 Transaction{timestamp=1520473177000, origin=2, target='3', amount=1566}
 Transaction{timestamp=1520473412000, origin=2, target='3', amount=5272}}
 ```
-
-[Next Lab >>](https://github.com/tbaums/dcos-mandt-labs/blob/master/labs/)
