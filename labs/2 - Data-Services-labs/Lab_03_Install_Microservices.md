@@ -22,4 +22,9 @@ We can also view the log output to make sure it is generating events as expected
 ```bash
 $ kubectl logs flink-demo-generator-655890656-8d1ls
 ```
+
+
+
+
+
 [Next Lab >>](https://github.com/tbaums/dcos-mandt-labs/blob/master/labs/)
