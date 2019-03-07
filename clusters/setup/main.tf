@@ -1,9 +1,4 @@
 # Used to determine your public IP for forwarding rules
-variable "cluster_name" {
-  type = "string"
-  default = "af-cluster"
-}
-
 data "http" "whatismyip" {
   url = "http://whatismyip.akamai.com/"
 }
