@@ -15,7 +15,7 @@ In the Services tab of the DC/OS UI, hover over the name of the Flink service. C
 
 In the Flink web UI, click on Submit New Job, then click the Add New button. This will allow you to select the jar file and upload it.
 
-Once we hit Submit, we should see the job begin to run in the Flink web UI.
+One the jar file is uploaded, we select it and hit Submit.  We should see the job begin to run in the Flink web UI.
 
 ### Step 3 - Viewing Output
 
