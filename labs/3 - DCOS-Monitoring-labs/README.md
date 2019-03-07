@@ -1,6 +1,6 @@
-# DC/OS Days: Prometheus and Grafana Labs
+# DC/OS Days: DC/OS Monitoring Labs
 
-Welcome to the DC/OS Prometheus and Grafana lab exercises. 
+Welcome to the DC/OS Monitoring lab exercises. 
 
 Please see the `/labs` directory for course materials. 
 
@@ -11,4 +11,4 @@ Please note that these lab exercises are designed to be used in conjuction with 
 
 ### Credits:
 
-Original courseware developed by Mark F. Johnson of Mesosphere.
+Original courseware developed by Dan Mennell of Mesosphere.
