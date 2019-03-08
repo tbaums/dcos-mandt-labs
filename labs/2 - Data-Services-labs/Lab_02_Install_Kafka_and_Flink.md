@@ -48,7 +48,7 @@ dcos kafka topic create fraud
 Next, we need to install Flink.
 
 ```bash
-$ dcos package install --yes flink
+dcos package install --yes flink
 ```
 
 The Services tab in your DC/OS UI should show the full suite of services you have successfully deployed.
