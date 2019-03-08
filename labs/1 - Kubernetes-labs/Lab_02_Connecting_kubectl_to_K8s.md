@@ -78,7 +78,7 @@ To authenticate to your Kubernetes dashboard, you will need your Kuberenetes `co
 cp ~/.kube/config ./
 ```
 
-To access your Kubernetes dashboard, visit:
+To access your Kubernetes dashboard, point your web browser to the URL below:
 
 *Make sure to include `https://` in your URL*
 

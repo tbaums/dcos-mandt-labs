@@ -166,16 +166,21 @@ First, it will show some Kubernetes components completed, and some started or pe
 ```
 $ watch dcos kubernetes manager plan status deploy --name=kubernetes-cluster1
 
-deploy (serial strategy) (IN_PROGRESS)
-├─ etcd (serial strategy) (COMPLETE)
-│  └─ etcd-0:[peer] (COMPLETE)
-├─ control-plane (dependency strategy) (STARTED)
-│  └─ kube-control-plane-0:[instance] (STARTED)
-├─ mandatory-addons (serial strategy) (PENDING)
-│  └─ mandatory-addons-0:[instance] (PENDING)
-├─ node (dependency strategy) (PENDING)
-│  └─ kube-node-0:[kubelet] (PENDING)
-└─ public-node (dependency strategy) (COMPLETE)
+deploy (serial strategy) (PENDING)
+  etcd (serial strategy) (PENDING)
+     etcd-0:[peer] (PENDING)
+     etcd-1:[peer] (PENDING)
+     etcd-2:[peer] (PENDING)
+  control-plane (dependency strategy) (PENDING)
+     kube-control-plane-0:[instance] (PENDING)
+     kube-control-plane-1:[instance] (PENDING)
+     kube-control-plane-2:[instance] (PENDING)
+  mandatory-addons (serial strategy) (PENDING)
+     mandatory-addons-0:[instance] (PENDING)
+  node (dependency strategy) (PENDING)
+     kube-node-0:[kubelet] (PENDING)
+  public-node (dependency strategy) (PENDING)
+     kube-node-public-0:[kubelet] (PENDING)
 ```
 
 When it is completely installed, the plan status should look like this:
@@ -184,15 +189,20 @@ When it is completely installed, the plan status should look like this:
 $ watch dcos kubernetes manager plan status deploy --name=kubernetes-cluster1
 
 deploy (serial strategy) (COMPLETE)
-├─ etcd (serial strategy) (COMPLETE)
-│  └─ etcd-0:[peer] (COMPLETE)
-├─ control-plane (dependency strategy) (COMPLETE)
-│  └─ kube-control-plane-0:[instance] (COMPLETE)
-├─ mandatory-addons (serial strategy) (COMPLETE)
-│  └─ mandatory-addons-0:[instance] (COMPLETE)
-├─ node (dependency strategy) (COMPLETE)
-│  └─ kube-node-0:[kubelet] (COMPLETE)
-└─ public-node (dependency strategy) (COMPLETE)
+  etcd (serial strategy) (COMPLETE)
+     etcd-0:[peer] (COMPLETE)
+     etcd-1:[peer] (COMPLETE)
+     etcd-2:[peer] (COMPLETE)
+  control-plane (dependency strategy) (COMPLETE)
+     kube-control-plane-0:[instance] (COMPLETE)
+     kube-control-plane-1:[instance] (COMPLETE)
+     kube-control-plane-2:[instance] (COMPLETE)
+  mandatory-addons (serial strategy) (COMPLETE)
+     mandatory-addons-0:[instance] (COMPLETE)
+  node (dependency strategy) (COMPLETE)
+     kube-node-0:[kubelet] (COMPLETE)
+  public-node (dependency strategy) (COMPLETE)
+     kube-node-public-0:[kubelet] (COMPLETE)
 
 ```
 

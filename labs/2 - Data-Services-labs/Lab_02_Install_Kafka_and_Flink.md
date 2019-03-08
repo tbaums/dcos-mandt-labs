@@ -12,7 +12,7 @@ dcos package install kafka --yes
 Next, figure out where the broker is:
 
 ```bash
-$ dcos kafka endpoints broker
+dcos kafka endpoints broker
 {
   "address": [
     "10.0.2.64:1025",
@@ -48,8 +48,9 @@ dcos kafka topic create fraud
 Next, we need to install Flink.
 
 ```bash
-$ dcos package install --yes flink
+dcos package install --yes flink
 ```
 
 The Services tab in your DC/OS UI should show the full suite of services you have successfully deployed.
 
+[Next Lab >>](https://github.com/tbaums/dcos-mandt-labs/blob/master/labs/2%20-%20Data-Services-labs/Lab_03_Install_Microservices.md)
