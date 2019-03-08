@@ -12,7 +12,7 @@ dcos package install kafka --yes
 Next, figure out where the broker is:
 
 ```bash
-$ dcos kafka endpoints broker
+dcos kafka endpoints broker
 {
   "address": [
     "10.0.2.64:1025",
